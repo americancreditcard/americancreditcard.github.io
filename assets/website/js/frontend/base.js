@@ -18,7 +18,7 @@
             $.each(rows['data_config'], function(i){
                 var row = rows['data_config'][i];
                 var key = row['key'];
-                if (key == 'FINANCE')
+                if (key == 'FINANCE' || key == '就业 & 信用卡')
                 {
                     var dl = $('<dl></dl>');
                     dl.append('<dt><h3>'+row['value']+'</h3></dt>');
@@ -32,13 +32,18 @@
 
                     $('.result-box[data-type="FINANCE"]').append(dl);
                 }
-            })
+            });
+            if ($('.result-box[data-type="FINANCE"]').text() == '')
+            {
+                var p = $('<p>生成错误，请刷新重新生成...</p>');
+                $('.result-box[data-type="FINANCE"]').append(p);
+            }
 
             $('.result-box[data-type="OTHER"]').empty();
             $.each(rows['data_config'], function(i){
                 var row = rows['data_config'][i];
                 var key = row['key'];
-                if (key != 'FINANCE')
+                if (key != 'FINANCE' && key != '就业 & 信用卡')
                 {
                     var dl = $('<dl></dl>');
                     dl.append('<dt><h3>'+row['value']+'</h3></dt>');
